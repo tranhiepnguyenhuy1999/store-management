@@ -1,12 +1,21 @@
 import React from 'react';
+// Antd css features
+import 'antd/dist/antd.css';
 import './App.css';
-import CatAdd from './feature/product_category/catAdd';
 
+import {
+  BrowserRouter as Router,
+} from "react-router-dom";
+
+import FrameMain from './component/frameMain/frameMain'
 function App() {
   return (
    <div>
-        <CatAdd/>
-   </div>
+        <Router>
+         <FrameMain></FrameMain> 
+        </Router>
+        
+   </div> 
   );
 }
 
