@@ -6,6 +6,7 @@ import Category from '../../feature/product_category';
 import MainPage from '../mainPage';
 import './frameMain.scss';
 import CatAdd from '../../feature/product_category/catAdd';
+import AddProduct from '../../feature/product/addProduct/addProduct';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 function FrameMain() {
@@ -29,7 +30,7 @@ function FrameMain() {
                     Sell
                     </Menu.Item>
                     <SubMenu key="sub1" icon={<UserOutlined />} title="Product">
-                    <Menu.Item key="3">Product</Menu.Item>
+                    <Menu.Item key="3"><Link to='/product/add'>Product</Link></Menu.Item>
                   
                     <Menu.Item key="4"><Link to='/product/category'>Category</Link></Menu.Item>
                     
@@ -51,6 +52,7 @@ function FrameMain() {
                         <Route exact path='/product/category' component={Category}></Route>
                         <Route  path='/product/category/add' component={CatAdd}></Route>
                         <Route  path='/product/category/:idCat' component={CatAdd}></Route>
+                        <Route exact path='/product/add' component ={AddProduct}></Route>
                     </Switch>
 
                     </div>
