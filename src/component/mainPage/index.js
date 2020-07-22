@@ -1,12 +1,8 @@
-import React from 'react';
+import React from 'react'
 import { Card, Col, Row } from 'antd';
-import {Link} from 'react-router-dom';
-import {useSelector} from 'react-redux'
+import {Link} from 'react-router-dom'
 function MainPage() {
-    const category = useSelector(state => state.category)
-    const product = useSelector(state => state.product)
     return (
-        
         <div className="site-card-wrapper">
             <Row gutter={16}>
             <Col span={6}>
@@ -15,16 +11,14 @@ function MainPage() {
                 </Card>
             </Col>
             <Col span={6}>
-                <Link to='/product'>
                 <Card title="Product" bordered={false}  style={{cursor: 'pointer'}}>
-                Product : {product.length}
+                Product
                 </Card>
-                </Link>
             </Col>
             <Col span={6}>
                 <Link to='/product/category'>
                 <Card title="Product Category" style={{cursor: 'pointer'}} bordered={false}>
-                Category : {category.length}
+                Category
                 </Card>
                 </Link>
             </Col>

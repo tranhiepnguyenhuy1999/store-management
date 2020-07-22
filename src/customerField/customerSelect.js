@@ -5,7 +5,16 @@ function CustomerSelect({option, field, form, placeholder, title}) {
     const onChange=(value, props)=>{
     form.setFieldValue(field.name, props.id);
     }
+   
     const valueSelected=option.find( item=> item.id===field.value)?option.find( item=> item.id===field.value):{nameCat:''};
+
+    const onFocus=()=>{
+        
+      }
+    
+    const onSearch=(val)=>{
+        
+      }
     return (
         <div>
             {title&&<label for={field.name}>{title}</label>}
