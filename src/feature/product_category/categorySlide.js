@@ -8,6 +8,10 @@ const category= createSlice(
         },
         {
             id:'109', nameCat: 'Mỳ ăn liền', idCat:'249XN'
+        },{
+            id:'10', nameCat: 'Hoa', idCat:'1205VVH'
+        },{
+            id:'1999', nameCat: 'Bánh Snack', idCat:'987445A30'
         }
     ],
         reducers:{

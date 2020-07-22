@@ -1,19 +1,19 @@
-import React, {useEffect} from 'react';
-import {removeCat} from './categorySlide';
-import {useSelector, useDispatch} from 'react-redux';
-import { Button, Table, Space , Col, Row, Input}from 'antd';
-import {Link, useHistory} from 'react-router-dom';
+import { Button, Col, Input, Row, Space, Table } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { removeCat } from './categorySlide';
 const { Search } = Input;
 function Category() {
-
-        useEffect(()=>{
-                // Get data from Restful API...
-        },[])
-    
     const catogory = useSelector(state => state.category);
+        useEffect(()=>{
+            setData(catogory)
+        },[catogory])
+    
+   
     const dispatch=useDispatch();
     const history=useHistory();
-
+    const [data, setData]=useState([])
     // Remove category
     const onDeleteCat=(id)=>{
         const action=removeCat(id);
@@ -25,8 +25,18 @@ function Category() {
     }
     // Search by Category Name
     const onSearchCategory=(value)=>{
-      console.log(value)
+      if(value==='')
+      setData(catogory)
+      else{
+        getData(value)
+      }
     }
+
+    const getData=(value)=>{
+      const newData=catogory.filter(cat=>cat.nameCat.toLowerCase().search(value)!==-1)
+      setData(newData)
+    }
+
     // Table head of antd
     const columns = [
         {
@@ -70,7 +80,7 @@ function Category() {
             />
         </Row>
         </Col>
-         <Table dataSource={catogory} columns={columns}></Table>
+         <Table dataSource={data} columns={columns}></Table>
         </div>
     )
 }

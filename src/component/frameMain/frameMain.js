@@ -25,12 +25,15 @@ function FrameMain() {
             </div>
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                     <Menu.Item key="1" icon={<PieChartOutlined />}>
-                    Staff
+                        <Link to='/'>
+                            MainPage 
+                        </Link>
                     </Menu.Item>
                     <Menu.Item key="2" icon={<DesktopOutlined />}>
                     Sell
                     </Menu.Item>
                     <SubMenu key="sub1" icon={<UserOutlined />} title="Product">
+                    
                     <Menu.Item key="3"><Link to='/product'>Product</Link></Menu.Item>
                   
                     <Menu.Item key="4"><Link to='/product/category'>Category</Link></Menu.Item>
