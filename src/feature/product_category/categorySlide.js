@@ -3,7 +3,13 @@ import {createSlice} from '@reduxjs/toolkit';
 const category= createSlice(
     {
         name: 'category',
-        initialState: [],
+        initialState: [{
+            id:'999', nameCat: 'Nước tăng lực', idCat:'18A'
+        },
+        {
+            id:'109', nameCat: 'Mỳ ăn liền', idCat:'249XN'
+        }
+    ],
         reducers:{
             addNewCat: (state, action)=>{
                 state.push(action.payload);

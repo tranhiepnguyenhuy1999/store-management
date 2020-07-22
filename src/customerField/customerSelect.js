@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from 'antd';
 const { Option } = Select;
-function CustomerSelect({option, field, form, placeholder}) {
+function CustomerSelect({option, field, form, placeholder, title}) {
     const onChange=(value, props)=>{
     form.setFieldValue(field.name, props.id);
     }
@@ -17,7 +17,8 @@ function CustomerSelect({option, field, form, placeholder}) {
       }
     return (
         <div>
-             <Select
+            {title&&<label for={field.name}>{title}</label>}
+            <Select
                 showSearch
                 style={{ width: `100%` }}
                 placeholder={placeholder}

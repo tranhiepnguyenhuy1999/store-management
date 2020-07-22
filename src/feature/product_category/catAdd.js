@@ -4,7 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import CustomInput from '../../customerField/customerInput';
-import { addNewCat, editCat } from './productCatSlide';
+import { addNewCat, editCat } from './categorySlide';
 import { useHistory, useParams } from "react-router-dom";
 function CatAdd() { 
     const dispatch=useDispatch();
@@ -41,16 +41,16 @@ function CatAdd() {
         <Formik
         initialValues={initialValues}
         validationSchema={schema}
-        onSubmit={(values,{resetForm},e,)=>{
-            
+        onSubmit={(values,{resetForm},e,)=>{   
             if(idCat)
             {   
+                // eđit category
                 const catU= {...values, id:+idCat}
                 const action=editCat(catU)
-                console.log(action)
                 dispatch(action)               
             }
             else{
+                //add new category
                 const newId=ramdomId();
                 const action= addNewCat({...values, id: newId});
                 dispatch(action);
@@ -63,6 +63,9 @@ function CatAdd() {
             {formikProps =>{
                 
             return<Col span={8}>
+                    <Col>
+                    <Button onClick={()=>{history.push('/product/category')}}>Return</Button>
+                    </Col>
                      <Form>
                         {/* Input Category */}
                             <FastField

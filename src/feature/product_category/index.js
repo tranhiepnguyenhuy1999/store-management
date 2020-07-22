@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
-import {removeCat} from './productCatSlide';
+import {removeCat} from './categorySlide';
 import {useSelector, useDispatch} from 'react-redux';
-import { Button, Table, Space , Col, Row}from 'antd';
-import {Link, useHistory} from 'react-router-dom'
+import { Button, Table, Space , Col, Row, Input}from 'antd';
+import {Link, useHistory} from 'react-router-dom';
+const { Search } = Input;
 function Category() {
 
         useEffect(()=>{
@@ -22,7 +23,10 @@ function Category() {
     const onFixCat=(id)=>{
         history.push(`/product/category/${id}`)
     }
-    
+    // Search by Category Name
+    const onSearchCategory=(value)=>{
+      console.log(value)
+    }
     // Table head of antd
     const columns = [
         {
@@ -55,9 +59,15 @@ function Category() {
         <div>
         <Col style={{marginBottom: '1em'}}>
         <Row>
-            <Link to='/product/category/add'>
+            <Link to='/product/category/add' style={{margin:'0 1em 0 0'}}>
                     <Button type='none'>Add new category</Button>
             </Link>
+            <Search
+              placeholder="Name Search"
+              onSearch={onSearchCategory}
+              style={{ width: 200 }}
+              allowClear
+            />
         </Row>
         </Col>
          <Table dataSource={catogory} columns={columns}></Table>
