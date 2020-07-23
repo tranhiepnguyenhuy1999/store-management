@@ -6,7 +6,7 @@ import {useHistory, useParams} from 'react-router-dom'
 import * as Yup from 'yup';
 import CustomerSelect from '../../../customerField/customerSelect';
 import CustomInput from '../../../customerField/customerInput';
-import {addNewProd, editProd} from '../productSlide'
+import {addNewProd, editProd} from '../productSlide';
 function AddProduct() {
 
     const categoryStore = useSelector(state => state.category);
@@ -78,8 +78,9 @@ function AddProduct() {
       }
           >
             {formikProps =>{
-              return<Form>
-                <Col span={8}>
+              return<Col span={8}>
+                <Col><Button onClick={()=>{history.push('/product')}}>Return</Button></Col>
+                <Form>
                   <FastField
                     name='barCode'
                     component={CustomInput}
@@ -133,8 +134,8 @@ function AddProduct() {
                   <Button type="primary" htmlType="submit">
                         {idProd?'Edit':'Add'}
                   </Button>
-                </Col>
-              </Form>
+                </Form>
+              </Col>
             }
             }
           </Formik>

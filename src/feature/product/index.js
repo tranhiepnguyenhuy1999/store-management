@@ -1,18 +1,24 @@
-import React, {useEffect} from 'react';
-import {removeProd} from './productSlide';
-import {useSelector, useDispatch} from 'react-redux';
-import { Button, Table, Space , Col, Row}from 'antd';
-import {Link, useHistory} from 'react-router-dom'
+import { Button, Col, Row, Space, Table, Input, Select } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { removeProd } from './productSlide';
+const {Search} = Input;
+const {Option} =Select;
 function Product() {
-
-        useEffect(()=>{
-                // Get data from Restful API...
-        },[])
-    
     const product = useSelector(state => state.product);
+    useEffect(()=>{
+      setData(product)
+    },[product])
+    const category=useSelector(state => state.category);
     const dispatch=useDispatch();
     const history=useHistory();
-
+    const [data, setData]= useState('')
+    
+    const [search]=useState({
+      name: '',
+      category: undefined
+    })
     // Remove product
     const onDeleteProduct=(id)=>{
         const action=removeProd(id);
@@ -22,7 +28,26 @@ function Product() {
     const onFixProduct=(id)=>{
         history.push(`/product/${id}`)
     }
-    
+    // Search by name
+    const onSearchProductByName=(value)=>{
+
+        const params={...search, name:value}
+        getData(params)
+    }
+    const onSearchProductByCategory=(value)=>{
+        const params={...search, category: value}
+        getData(params)
+    }
+    // Get data filter
+    const getData=(params)=>{
+      let newData=[...product];
+      if(params.name!=='')
+          newData=product.filter(product=>product.nameProd.toLowerCase().search(params.name)!==-1)
+      if(params.category)
+          newData=newData.filter(product=>product.category===params.category)
+      setData(newData)
+    }
+
     // Table head of antd
     const columns = [
         {
@@ -31,19 +56,28 @@ function Product() {
           key: 'id',
         },
         {
-          title: 'Name',
-          dataIndex: 'nameProd',
-          key: 'nameProd',
-        },
-        {
           title: 'Barcode',
           dataIndex: 'barCode',
           key: 'barCode',
         },
+        {
+          title: 'Name',
+          dataIndex: 'nameProd',
+          key: 'nameProd',
+        },  
         { 
           title: 'Category',
           dataIndex: 'category',
           key: 'category',
+          render: (text, record)=>{
+              const item= category.find(cat=>cat.id===record.category)
+              return<div>{item.nameCat}</div>
+          }
+        },
+        {
+          title: 'Price',
+          dataIndex: 'priceExport',
+          key: 'priceExport',
         },
         {
             title: 'Action',
@@ -57,16 +91,37 @@ function Product() {
           },
       ];    
     return (
-        <div>
+        <Col span={24}>
         <Col style={{marginBottom: '1em'}}>
         <Row>
-            <Link to='/product/add'>
+            <Link to='/product/add' style={{margin: '0 1em 0 0'}}>
                 <Button type='none'>Add new product</Button>
             </Link>
+            <Search
+              placeholder="Name Search"
+              onSearch={onSearchProductByName}
+              style={{ width: 200, margin: '0 1em 0 0' }}
+
+              allowClear
+            />
+
+                <Select
+                  showSearch
+                  style={{ width: 200 }}
+                  placeholder="Find by category"
+                  optionFilterProp="children"
+                  onChange={onSearchProductByCategory}
+                  filterOption={(input, option) =>
+                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                  }
+                  allowClear
+                >
+                  {category.map(cat=><Option value={cat.id}>{cat.nameCat}</Option>)}
+                </Select>
         </Row>
         </Col>
-         <Table dataSource={product} columns={columns}></Table>
-        </div>
+         <Table dataSource={data} columns={columns}></Table>
+        </Col>
     )
 }
 
