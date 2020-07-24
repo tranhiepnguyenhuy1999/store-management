@@ -16,9 +16,7 @@ function CustomerSelect({option, field, form, placeholder, title}) {
                 optionFilterProp="children"
                 {...field}
                 value={valueSelected.nameCat}
-                onFocus={onFocus}
                 onChange={onChange}
-                onSearch={onSearch}
                 filterOption={(input, option) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Input } from 'antd';
 
 
-function CustomerInput({field, form, type, placeholder, title}) {
+function CustomerInput({field, form, type, placeholder, title, disabled}) {
     const {errors, touched}= form;
     const {name}= field;
     return (
@@ -12,6 +12,7 @@ function CustomerInput({field, form, type, placeholder, title}) {
             {...field}
             type={type}
             placeholder={placeholder}
+            disabled={disabled}
             >
             </Input>
             {/* Validation Errors  */}

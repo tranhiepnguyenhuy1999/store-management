@@ -1,4 +1,5 @@
 import { Button, Col, Input, Row, Space, Table } from 'antd';
+import { DeleteOutlined, EditOutlined  } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
@@ -59,8 +60,8 @@ function Category() {
             key: 'action',
             render: (text, record) => (
               <Space size="middle">
-                <Button type='primary' onClick={()=>onDeleteCat(record.id)}>Delete</Button>
-                <Button onClick={()=>onFixCat(record.id)}>Fix</Button>
+                <Button type='primary' icon={<DeleteOutlined/>} onClick={()=>onDeleteCat(record.id)}></Button>
+                <Button icon={<EditOutlined/>} onClick={()=>onFixCat(record.id)}></Button>
               </Space>
             ),
           },

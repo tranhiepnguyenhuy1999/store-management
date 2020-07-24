@@ -1,4 +1,5 @@
 import { Button, Col, Row, Space, Table, Input, Select } from 'antd';
+import { DeleteOutlined, EditOutlined  } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
@@ -25,8 +26,8 @@ function Product() {
         dispatch(action);
     }
     // Fix product
-    const onFixProduct=(id)=>{
-        history.push(`/product/${id}`)
+    const onFixProduct=(idProduct)=>{
+        history.push(`/product/${idProduct}`)
     }
     // Search by name
     const onSearchProductByName=(value)=>{
@@ -50,45 +51,45 @@ function Product() {
 
     // Table head of antd
     const columns = [
-        {
-          title: 'ID',
-          dataIndex: 'id',
-          key: 'id',
+      {
+        title: 'ID',
+        dataIndex: 'id',
+        key: 'id',
+      },
+      {
+        title: 'Barcode',
+        dataIndex: 'barCode',
+        key: 'barCode',
+      },
+      {
+        title: 'Name',
+        dataIndex: 'nameProd',
+        key: 'nameProd',
+      },  
+      { 
+        title: 'Category',
+        dataIndex: 'category',
+        key: 'category',
+        render: (text, record)=>{
+            const item= category.find(cat=>cat.id===record.category)
+            return<div>{item.nameCat}</div>
+        }
+      },
+      {
+        title: 'Price',
+        dataIndex: 'priceExport',
+        key: 'priceExport',
+      },
+      {
+          title: 'Action',
+          key: 'action',
+          render: (text, record) => (
+            <Space size="middle">
+              <Button type='primary' icon={<DeleteOutlined/>} onClick={()=>onDeleteProduct(record.id)}></Button>
+              <Button icon={<EditOutlined/>} onClick={()=>onFixProduct(record.id)}></Button>
+            </Space>
+          ),
         },
-        {
-          title: 'Barcode',
-          dataIndex: 'barCode',
-          key: 'barCode',
-        },
-        {
-          title: 'Name',
-          dataIndex: 'nameProd',
-          key: 'nameProd',
-        },  
-        { 
-          title: 'Category',
-          dataIndex: 'category',
-          key: 'category',
-          render: (text, record)=>{
-              const item= category.find(cat=>cat.id===record.category)
-              return<div>{item.nameCat}</div>
-          }
-        },
-        {
-          title: 'Price',
-          dataIndex: 'priceExport',
-          key: 'priceExport',
-        },
-        {
-            title: 'Action',
-            key: 'action',
-            render: (text, record) => (
-              <Space size="middle">
-                <Button type='primary' onClick={()=>onDeleteProduct(record.id)}>Delete</Button>
-                <Button onClick={()=>onFixProduct(record.id)}>Fix</Button>
-              </Space>
-            ),
-          },
       ];    
     return (
         <Col span={24}>

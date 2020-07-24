@@ -1,13 +1,14 @@
-import { DesktopOutlined, FileOutlined, PieChartOutlined, UserOutlined } from '@ant-design/icons';
+import { DesktopOutlined, HomeOutlined, ShoppingCartOutlined, MenuUnfoldOutlined, BarsOutlined  } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
+import Product from '../../feature/product';
+import AddProduct from '../../feature/product/addProduct/addProduct';
 import Category from '../../feature/product_category';
+import CatAdd from '../../feature/product_category/catAdd';
 import MainPage from '../mainPage';
 import './frameMain.scss';
-import CatAdd from '../../feature/product_category/catAdd';
-import AddProduct from '../../feature/product/addProduct/addProduct';
-import Product from '../../feature/product';
+import Sale from '../../feature/sale';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 function FrameMain() {
@@ -24,7 +25,7 @@ function FrameMain() {
                 <img src='../../../public/asset/img/logo.png' alt='can"t load logo'></img>
             </div>
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    <Menu.Item key="1" icon={<PieChartOutlined />}>
+                    <Menu.Item key="1" icon={<HomeOutlined  />}>
                         <Link to='/'>
                             MainPage 
                         </Link>
@@ -32,14 +33,14 @@ function FrameMain() {
                     <Menu.Item key="2" icon={<DesktopOutlined />}>
                     Sell
                     </Menu.Item>
-                    <SubMenu key="sub1" icon={<UserOutlined />} title="Product">
+                    <SubMenu key="sub1" icon={<MenuUnfoldOutlined/>} title="Product">
                     
-                    <Menu.Item key="3"><Link to='/product'>Product</Link></Menu.Item>
+                    <Menu.Item key="3" icon={<BarsOutlined />}><Link to='/product'>Product</Link></Menu.Item>
                   
-                    <Menu.Item key="4"><Link to='/product/category'>Category</Link></Menu.Item>
+                    <Menu.Item key="4"  icon={<BarsOutlined />}><Link to='/product/category'>Category</Link></Menu.Item>
                     
                     </SubMenu>
-                    <Menu.Item key="9" icon={<FileOutlined />}> Docs</Menu.Item>
+                    <Menu.Item key="9" icon ={<ShoppingCartOutlined />}><Link to='/sale'>Sale</Link></Menu.Item>
                 </Menu>
             </Sider>
             <Layout className="site-layout">
@@ -59,6 +60,7 @@ function FrameMain() {
                         <Route exact path='/product/add' component ={AddProduct}></Route>
                         <Route exact path='/product' component ={Product}></Route>
                         <Route exact path='/product/:idProd' component ={AddProduct}></Route>
+                        <Route exact path='/sale' component={Sale}></Route>
                     </Switch>
 
                     </div>

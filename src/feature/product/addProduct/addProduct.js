@@ -13,9 +13,10 @@ function AddProduct() {
     const dispatch=useDispatch();
     const history=useHistory();
 
-    const {idProd}=useParams();
+    const {idProd}=useParams();console.log(idProd)
     const product = useSelector(state => state.product)
-    const eProd= product.find(product=>product.id===+idProd)
+    const eProd= product.find(product=>product.id === +idProd)
+    
     const initialValues=
     idProd?{
       nameProd: eProd.nameProd,
@@ -30,7 +31,9 @@ function AddProduct() {
       priceImport:0,
       priceExport:0,
     };
-
+    const ramdomId=()=>{
+      return Math.trunc(Math.random()*10000);
+    }
     // Validation values
     const schema = Yup.object().shape({
       nameProd: Yup.string() //name product
@@ -47,10 +50,6 @@ function AddProduct() {
       priceExport: Yup.number()
         .required('This field is Required'),
     });
-
-    const ramdomId=()=>{
-      return Math.trunc(Math.random()*10000);
-     }
     return (
 
       
@@ -62,13 +61,12 @@ function AddProduct() {
             if(idProd)
             {   
                 // eđit product
-                const product= {...values, id:+idProd}
-                const action=editProd(product)
+                const action=editProd({...values,id: +idProd})
                 dispatch(action)               
             }
             else{
-                const newId=ramdomId();
-                const action= addNewProd({...values, id: newId});
+                const id=ramdomId();
+                const action= addNewProd({...values, id});
                 dispatch(action);
               }
             resetForm({values:''})
