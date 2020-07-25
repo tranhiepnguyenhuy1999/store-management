@@ -56,7 +56,6 @@ function CatAdd() {
                 dispatch(action);
             }
             resetForm({values:''})
-            history.push('/product/category')
             e.preventDefault();
         }}
         >

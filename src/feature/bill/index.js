@@ -27,7 +27,7 @@ function Bill() {
         {
           title: 'Money',
           dataIndex: 'money',
-          key: 'mon',
+          key: 'money',
         },
         {
             title: 'Action',

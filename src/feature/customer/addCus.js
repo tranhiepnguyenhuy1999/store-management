@@ -6,26 +6,29 @@ import * as Yup from 'yup';
 import CustomInput from '../../customerField/customerInput';
 import { useHistory, useParams } from "react-router-dom";
 import CustomerDatePicker from '../../customerField/customerDatePicker';
-import moment from 'moment'
+import moment from 'moment';
+import {addNewCus} from './customerSlide'
 function AddCustomer() { 
-    // const dispatch=useDispatch();
+    const dispatch=useDispatch();
     const history= useHistory();    
     const {idCus}=useParams();
+    
     const customer = useSelector(state => state.customer)
-    const eCat= customer.find(cus=>cus.id===+idCus)
+    const eCus= customer.find(cus=>cus.id===+idCus)
+    console.log(eCus)
     const initialValues=
     idCus?{
-        nameCus: eCat.nameCat,
-        phoneNumber: eCat.idCus,
-        birth: eCat.birth,
+        nameCus: eCus.nameCus,
+        phoneNumber: eCus.phoneNumber,
+        birth: moment(eCus.birth, 'DD/MM/YYYY'),
     }:{
         nameCus : '',
         phoneNumber: '',
         birth:moment('01/01/2000', 'DD/MM/YYYY'),
     };
-    // const ramdomId=()=>{
-    //     return Math.trunc(Math.random()*10000);
-    // }
+    const ramdomId=()=>{
+        return Math.trunc(Math.random()*10000);
+    }
  
     // Validation the values 
     const schema = Yup.object().shape({
@@ -51,13 +54,12 @@ function AddCustomer() {
             //     dispatch(action)               
             // }
             // else{
-            //     //add new category
-            //     const newId=ramdomId();
-            //     const action= addNewCat({...values, id: newId});
-            //     dispatch(action);
+                //add new category
+                const newId=ramdomId();
+                const action= addNewCus({...values, id: newId, birth: values.birth.dateString});
+                dispatch(action);
             // }
             resetForm({values:''})
-            history.push('/product/category')
             e.preventDefault();
         }}
         >
@@ -66,7 +68,7 @@ function AddCustomer() {
                 console.log(values)
             return<Col span={8}>
                     <Col>
-                    <Button onClick={()=>{history.push('/product/category')}}>Return</Button>
+                    <Button onClick={()=>{history.push('/customer')}}>Return</Button>
                     </Col>
                      <Form>
                         {/* Input name customer */}

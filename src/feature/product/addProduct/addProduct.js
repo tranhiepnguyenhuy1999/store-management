@@ -69,8 +69,7 @@ function AddProduct() {
                 const action= addNewProd({...values, id});
                 dispatch(action);
               }
-            resetForm({values:''})
-            history.push('/product')
+          resetForm({values:''});
             e.preventDefault();
         }
       }

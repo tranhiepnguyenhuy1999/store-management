@@ -1,17 +1,18 @@
-import { DesktopOutlined, HomeOutlined, ShoppingCartOutlined, MenuUnfoldOutlined, BarsOutlined  } from '@ant-design/icons';
+import { BarsOutlined, DesktopOutlined, HomeOutlined, MenuUnfoldOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
+import BillDetail from '../../feature/bill/billDetail';
+import Bill from '../../feature/bill/index';
+import Customer from '../../feature/customer';
+import AddCustomer from '../../feature/customer/addCus';
 import Product from '../../feature/product';
 import AddProduct from '../../feature/product/addProduct/addProduct';
 import Category from '../../feature/product_category';
 import CatAdd from '../../feature/product_category/catAdd';
+import Sale from '../../feature/sale';
 import MainPage from '../mainPage';
 import './frameMain.scss';
-import Sale from '../../feature/sale';
-import Bill from '../../feature/bill/index';
-import BillDetail from '../../feature/bill/billDetail';
-import AddCustomer from '../../feature/customer/addCus';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 function FrameMain() {
@@ -45,7 +46,7 @@ function FrameMain() {
                     </SubMenu>
                     <Menu.Item key="5" icon ={<ShoppingCartOutlined />}><Link to='/sale'>Sale</Link></Menu.Item>
                     <Menu.Item key="6" icon ={<ShoppingCartOutlined />}><Link to='/bill'>Bill</Link></Menu.Item>
-                    <Menu.Item key="7" icon ={<ShoppingCartOutlined />}><Link to='/customer/add'>Customer</Link></Menu.Item>
+                    <Menu.Item key="7" icon ={<ShoppingCartOutlined />}><Link to='/customer'>Customer</Link></Menu.Item>
                 </Menu>
             </Sider>
             <Layout className="site-layout">
@@ -69,7 +70,8 @@ function FrameMain() {
                         <Route exact path='/bill' component={Bill}/>
                         <Route exact path='/bill/:idBill' component={BillDetail}/>
                         <Route exact path='/customer/add' component={AddCustomer}/>
-                        <Route exact path='/customer/:id' component={AddCustomer}/>
+                        <Route exact path='/customer/:idCus' component={AddCustomer}/>
+                        <Route exact path='/customer' component={Customer}/>
                     </Switch>
 
                     </div>

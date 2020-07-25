@@ -14,6 +14,7 @@ function CustomerInputNumber({field, form, title, min, max}) {
             <label for={field.name}>{title}</label>
             <InputNumber min={min} max={max} {...field}
             onChange={onChange}
+            style={{width:'100%'}}
             />
             {/* Validation Errors  */}
             {errors[name]&&touched[name]?<span style={{color: 'red'}}>{errors[name]}</span>: null}

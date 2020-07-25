@@ -34,18 +34,22 @@ function Sale() {
             validationSchema={schema}
 
             onSubmit={(values,{resetForm}, e)=>{
+                if(values.products.reduce((acc, cur)=> acc+ cur.number*cur.priceExport, 0)>values.money)
+                    alert('Need more money')
+                else{
                 const id=randomId();
                 const action= addNewBill({...values, id});
                 dispatch(action)
                 resetForm({values:''})
                 e.preventDefault();
+                }
             }}
             >
                     {formikProps=>
                     {
                         const {values}= formikProps;
                         const total= values.products.reduce((acc, cur)=> acc+ cur.number*cur.priceExport, 0);
-                        const saleOff=10000;
+                        const saleOff=0;
                         const excessCash= values.money- (total-saleOff);
                         return <Form>
                             <Row>
@@ -61,7 +65,7 @@ function Sale() {
 
                                 </FastField>
                                 </Col>                           
-                                <Col span={8}>
+                                <Col span={7} style={{margin:`0 0 0 1em`}}>
                                     <Col>
                                     <FastField
                                         name='money'
