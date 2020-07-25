@@ -1,17 +1,14 @@
 import { Button, Col, InputNumber, Select, Space, Table } from 'antd';
 import { DeleteOutlined  } from '@ant-design/icons';
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 const { Option } = Select;
-function CustomerTable({field, form, title}) {
+function CustomerTable({field, form, title, data}) {
     const product=useSelector(state=>state.product)
-    const [data, setData]=useState([])
     const handleChange=(value)=>{   
         if(data.findIndex(item => item.id ===value)===-1)
         {
             const choose=product.find(product =>product.id === value);
-            setData([...data, {...choose, number: 1}]);
-
             form.setFieldValue(field.name, [...data, {...choose, number: 1}])
         }
         
@@ -20,11 +17,9 @@ function CustomerTable({field, form, title}) {
         const index= data.findIndex(item=> item.id===id)
         const newData=[...data]
         newData[index].number=value
-        setData(newData)
         form.setFieldValue(field.name, newData)
       }
     const onDeleteProduct=(id)=>{
-        setData(data.filter(item => item.id !== id))
         form.setFieldValue(field.name, data.filter(item => item.id !== id))
     }
     // Column key

@@ -4,13 +4,23 @@ import {Col, Button, Row}  from 'antd'
 import * as Yup from 'yup';
 import CustomerTable from '../../customerField/customerTable';
 import CustomerInputNumber from '../../customerField/customerInputNumber';
+import {addNewBill} from '../bill/billSlide';
+import {useDispatch} from 'react-redux';
 function Sale() {
 
+    const dispatch= useDispatch();
+
+    // Create fake ID
+    const randomId=()=>{
+        return Math.trunc(Math.random()*10000);
+      }
+    
     const schema = Yup.object().shape({
         money: Yup.number() //name product
           .min(500, 'Too Short!')
           .max(10000000, 'Too Long!')
           .required('This field is Required'),
+        products: Yup.array().required('Atleast 1 product in cart')
       });
     return (
         <Col span={24}>
@@ -22,6 +32,14 @@ function Sale() {
                 }
             }
             validationSchema={schema}
+
+            onSubmit={(values,{resetForm}, e)=>{
+                const id=randomId();
+                const action= addNewBill({...values, id});
+                dispatch(action)
+                resetForm({values:''})
+                e.preventDefault();
+            }}
             >
                     {formikProps=>
                     {
@@ -38,6 +56,7 @@ function Sale() {
                                     
                                     placeholder='This is product chose'
                                     title='Product choose'
+                                    data={values.products}
                                     >
 
                                 </FastField>

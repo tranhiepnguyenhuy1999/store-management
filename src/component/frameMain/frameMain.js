@@ -9,6 +9,9 @@ import CatAdd from '../../feature/product_category/catAdd';
 import MainPage from '../mainPage';
 import './frameMain.scss';
 import Sale from '../../feature/sale';
+import Bill from '../../feature/bill/index';
+import BillDetail from '../../feature/bill/billDetail';
+import AddCustomer from '../../feature/customer/addCus';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 function FrameMain() {
@@ -40,7 +43,9 @@ function FrameMain() {
                     <Menu.Item key="4"  icon={<BarsOutlined />}><Link to='/product/category'>Category</Link></Menu.Item>
                     
                     </SubMenu>
-                    <Menu.Item key="9" icon ={<ShoppingCartOutlined />}><Link to='/sale'>Sale</Link></Menu.Item>
+                    <Menu.Item key="5" icon ={<ShoppingCartOutlined />}><Link to='/sale'>Sale</Link></Menu.Item>
+                    <Menu.Item key="6" icon ={<ShoppingCartOutlined />}><Link to='/bill'>Bill</Link></Menu.Item>
+                    <Menu.Item key="7" icon ={<ShoppingCartOutlined />}><Link to='/customer/add'>Customer</Link></Menu.Item>
                 </Menu>
             </Sider>
             <Layout className="site-layout">
@@ -61,6 +66,10 @@ function FrameMain() {
                         <Route exact path='/product' component ={Product}></Route>
                         <Route exact path='/product/:idProd' component ={AddProduct}></Route>
                         <Route exact path='/sale' component={Sale}></Route>
+                        <Route exact path='/bill' component={Bill}/>
+                        <Route exact path='/bill/:idBill' component={BillDetail}/>
+                        <Route exact path='/customer/add' component={AddCustomer}/>
+                        <Route exact path='/customer/:id' component={AddCustomer}/>
                     </Switch>
 
                     </div>

@@ -31,7 +31,7 @@ function AddProduct() {
       priceImport:0,
       priceExport:0,
     };
-    const ramdomId=()=>{
+    const randomId=()=>{
       return Math.trunc(Math.random()*10000);
     }
     // Validation values
@@ -65,7 +65,7 @@ function AddProduct() {
                 dispatch(action)               
             }
             else{
-                const id=ramdomId();
+                const id=randomId();
                 const action= addNewProd({...values, id});
                 dispatch(action);
               }
