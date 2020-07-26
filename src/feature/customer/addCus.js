@@ -7,7 +7,7 @@ import CustomInput from '../../customerField/customerInput';
 import { useHistory, useParams } from "react-router-dom";
 import CustomerDatePicker from '../../customerField/customerDatePicker';
 import moment from 'moment';
-import {addNewCus} from './customerSlide'
+import {addNewCus, editCus} from './customerSlide'
 function AddCustomer() { 
     const dispatch=useDispatch();
     const history= useHistory();    
@@ -15,7 +15,6 @@ function AddCustomer() {
     
     const customer = useSelector(state => state.customer)
     const eCus= customer.find(cus=>cus.id===+idCus)
-    console.log(eCus)
     const initialValues=
     idCus?{
         nameCus: eCus.nameCus,
@@ -24,7 +23,7 @@ function AddCustomer() {
     }:{
         nameCus : '',
         phoneNumber: '',
-        birth:moment('01/01/2000', 'DD/MM/YYYY'),
+        birth:null,
     };
     const ramdomId=()=>{
         return Math.trunc(Math.random()*10000);
@@ -45,21 +44,33 @@ function AddCustomer() {
         <Formik
         initialValues={initialValues}
         validationSchema={schema}
-        onSubmit={(values,{resetForm},e,)=>{   
-            // if(idCus)
-            // {   
-            //     // eđit category
-            //     const catU= {...values, id:+idCus}
-            //     const action=editCat(catU)
-            //     dispatch(action)               
-            // }
-            // else{
+        onSubmit={(values,{resetForm},e,)=>{
+            const phoneCheck_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+            if(idCus)
+            {   
+                // eđit category
+                if(phoneCheck_regex.test(values.phoneNumber)){
+                const cusU= {...values, id:+idCus, birth: values.birth.dateString}
+                const action=editCus(cusU)
+                dispatch(action)
+                resetForm({values:''});}
+                else{
+                    alert('The phone is not real') 
+                }          
+            }
+            else{
                 //add new category
+                if(phoneCheck_regex.test(values.phoneNumber))
+                {
                 const newId=ramdomId();
                 const action= addNewCus({...values, id: newId, birth: values.birth.dateString});
                 dispatch(action);
-            // }
-            resetForm({values:''})
+                resetForm({values:''});
+                }
+                else{
+                    alert('The phone is not real')
+                }
+            }
             e.preventDefault();
         }}
         >

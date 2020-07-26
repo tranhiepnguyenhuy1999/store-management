@@ -86,18 +86,19 @@ function Sale() {
                                     <div>{saleOff}</div>
                                     </Col>
                                     <Col>
-                                    <div>Total amount</div>
+                                    <div>Total Amount</div>
                                     <div>{total-saleOff}</div>
                                     </Col>
-                                    <Col>
-                                    <div>excess cash</div>
+                                    <Col style={{margin : `0 0 1em 0`}}>
+                                    <div>Excess Cash</div>
                                     <div>{excessCash}</div>
                                     </Col>
+                                    <Button type="primary" htmlType="submit">
+                                    Add
+                                    </Button>
                                 </Col>
                           
-                            <Button type="primary" htmlType="submit">
-                                    Add
-                            </Button>
+                          
                             </Row>
                             </Form>
                     }

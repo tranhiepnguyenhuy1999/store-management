@@ -1,4 +1,4 @@
-import { Button, Col, Row, Space, Table, Input, Select } from 'antd';
+import { Button, Col, Row, Space, Table, Input, Select, Tag } from 'antd';
 import { DeleteOutlined, EditOutlined  } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -79,6 +79,14 @@ function Product() {
         title: 'Price',
         dataIndex: 'priceExport',
         key: 'priceExport',
+      },
+      {
+        title: 'Amount',
+        dataIndex: 'amount',
+        key: 'amount',
+        render: (text, record)=>{
+          return (record.amount>0?record.amount:<Tag color="magenta">Sold out</Tag>)
+        }
       },
       {
           title: 'Action',

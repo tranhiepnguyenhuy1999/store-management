@@ -11,6 +11,7 @@ const product= createSlice(
                 priceImport:"5000",
                 priceExport:"12000",
                 id: 1999,
+                amount: 0,
             },
             {
                 nameProd:"Mì ăn liền Hảo Hảo",
@@ -19,6 +20,7 @@ const product= createSlice(
                 priceImport:"1000",
                 priceExport:"4000",
                 id: 22057,
+                amount: 0,
             },
             {
                 nameProd:"Hoa tulip",
@@ -27,6 +29,7 @@ const product= createSlice(
                 priceImport:"9000",
                 priceExport:"24000",
                 id:3847,
+                amount: 0,
             }
     ],
         reducers:{

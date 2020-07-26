@@ -61,18 +61,18 @@ function AddProduct() {
             if(idProd)
             {   
                 // eđit product
-                const action=editProd({...values,id: +idProd})
+                const action=editProd({...values,id: +idProd, amount: eProd.amount})
                 dispatch(action)               
             }
             else{
                 const id=randomId();
-                const action= addNewProd({...values, id});
+                const action= addNewProd({...values, id, amount: 0});
                 dispatch(action);
               }
           resetForm({values:''});
             e.preventDefault();
         }
-      }
+      } 
           >
             {formikProps =>{
               return<Col span={8}>

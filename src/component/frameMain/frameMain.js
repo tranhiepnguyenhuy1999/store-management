@@ -13,6 +13,7 @@ import CatAdd from '../../feature/product_category/catAdd';
 import Sale from '../../feature/sale';
 import MainPage from '../mainPage';
 import './frameMain.scss';
+import AddReceipt from '../../feature/receipt/addReceipt';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 function FrameMain() {
@@ -35,7 +36,9 @@ function FrameMain() {
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="2" icon={<DesktopOutlined />}>
-                    Sell
+                    <Link to ='/receipt'>
+                        Receipt
+                    </Link>
                     </Menu.Item>
                     <SubMenu key="sub1" icon={<MenuUnfoldOutlined/>} title="Product">
                     
@@ -72,6 +75,7 @@ function FrameMain() {
                         <Route exact path='/customer/add' component={AddCustomer}/>
                         <Route exact path='/customer/:idCus' component={AddCustomer}/>
                         <Route exact path='/customer' component={Customer}/>
+                        <Route  exact path='/receipt' component={AddReceipt}></Route>
                     </Switch>
 
                     </div>
