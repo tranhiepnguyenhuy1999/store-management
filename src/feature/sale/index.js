@@ -1,11 +1,12 @@
-import React from 'react'
+import { Button, Col, Row } from 'antd';
 import { FastField, Form, Formik } from 'formik';
-import {Col, Button, Row}  from 'antd'
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
-import CustomerTable from '../../customerField/customerTable';
 import CustomerInputNumber from '../../customerField/customerInputNumber';
-import {addNewBill} from '../bill/billSlide';
-import {useDispatch} from 'react-redux';
+import CustomerTable from '../../customerField/customerTable';
+import { addNewBill } from '../bill/billSlide';
+import { descreaseProdAmount } from '../product/productSlide';
 function Sale() {
 
     const dispatch= useDispatch();
@@ -40,6 +41,11 @@ function Sale() {
                 const id=randomId();
                 const action= addNewBill({...values, id});
                 dispatch(action)
+                //descrease amount of each product
+                values.products.forEach(product=>{
+                    const action = descreaseProdAmount({id: product.id, amount: product.number})
+                    dispatch(action)
+                })
                 resetForm({values:''})
                 e.preventDefault();
                 }

@@ -7,7 +7,7 @@ import CustomerTextArea from '../../customerField/customerTextArea';
 import CustomerInput from '../../customerField/customerInput';
 import {addNewReceipt} from './receiptSlide'
 import {useDispatch} from 'react-redux'
-import {countProdAmount} from '../product/productSlide'
+import {increaseProdAmount} from '../product/productSlide'
 function AddReceipt() {
     const dispatch=useDispatch();
     const randomId=()=>{
@@ -35,7 +35,7 @@ function AddReceipt() {
             dispatch(action)
             // increase amount fro each products
             values.products.forEach(product=>{
-                const action= countProdAmount({id: product.id, amount: product.number})
+                const action= increaseProdAmount({id: product.id, amount: product.number})
                 dispatch(action)
             })
             resetForm({values:''})

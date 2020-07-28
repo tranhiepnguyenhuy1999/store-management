@@ -53,10 +53,15 @@ const product= createSlice(
                 if(index>-1)
                 state[index]=action.payload
                 },
-            countProdAmount: (state, action)=>{
+            increaseProdAmount: (state, action)=>{
                 const index= state.findIndex(product => product.id === action.payload.id)
                 if(index>-1)
                 state[index].amount=state[index].amount + action.payload.amount
+                },
+            descreaseProdAmount: (state, action)=>{
+                const index= state.findIndex(product => product.id === action.payload.id)
+                if(index>-1)
+                state[index].amount=state[index].amount - action.payload.amount
                 },
         }
     }
@@ -66,5 +71,5 @@ export const {
     addNewProd,
     removeProd, 
     editProd,
-    countProdAmount}=actions;
+    increaseProdAmount, descreaseProdAmount}=actions;
 export default reducer;

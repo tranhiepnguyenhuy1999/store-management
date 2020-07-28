@@ -1,17 +1,34 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import { Button, Col, Table, Input, Select,Row } from 'antd';
+import { Col, Table, Input, Select, Row, Checkbox } from 'antd';
 const {Search} = Input;
 const {Option} =Select;
 function Inventory() { 
     const product=useSelector(state=>state.product)
     const category=useSelector(state=>state.category)
     const [data, setData] = useState(product)
-    const [search]=useState({
+    const [off, setOff] = useState(false) // Check the prodduct is sold out
+    const search={
         name: '',
         category: undefined
-      })
+      }
 
+    // Get data filter
+    const getData=(params)=>{
+    if(product.length===0) return;
+    let newData=[...product];
+    if(params.name!=='')
+        newData=product.filter(product=>product.nameProd.toLowerCase().search(params.name.toLowerCase())!==-1)
+    if(params.category)
+        newData=newData.filter(product=>product.category===params.category)
+    if(off)
+        newData=newData.filter(product=>product.amount<1)                             
+    setData(newData)
+    }
+    useEffect(() => {
+        getData(search)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [off])
      // Search by name
      const onSearchProductByName=(value)=>{
 
@@ -22,16 +39,9 @@ function Inventory() {
         const params={...search, category: value}
         getData(params)
     }
-    // Get data filter
-    const getData=(params)=>{
-      let newData=[...product];
-      if(params.name!=='')
-          newData=product.filter(product=>product.nameProd.toLowerCase().search(params.name.toLowerCase())!==-1)
-      if(params.category)
-          newData=newData.filter(product=>product.category===params.category)
-      setData(newData)
+    const onChangeOff= ()=>{
+         setOff(!off)
     }
-
 
     const columns = [
         {
@@ -73,19 +83,21 @@ function Inventory() {
                     allowClear
                     />
 
-                        <Select
-                        showSearch
-                        style={{ width: 200 }}
-                        placeholder="Find by category"
-                        optionFilterProp="children"
-                        onChange={onSearchProductByCategory}
-                        filterOption={(input, option) =>
-                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                        }
-                        allowClear
-                        >
-                        {category.map(cat=><Option value={cat.id}>{cat.nameCat}</Option>)}
-                        </Select>
+                    <Select
+                    showSearch
+                    style={{ width: 200, margin: '0 1em 0 0' }}
+                    placeholder="Find by category"
+                    optionFilterProp="children"
+                    onChange={onSearchProductByCategory}
+                    filterOption={(input, option) =>
+                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                    }
+                    
+                    allowClear
+                    >
+                    {category.map(cat=><Option value={cat.id}>{cat.nameCat}</Option>)}
+                    </Select>
+                    <Checkbox onChange={onChangeOff}>Sold out</Checkbox>
                 </Row>
             </Col>
             <Table dataSource={data} columns={columns}></Table>

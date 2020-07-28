@@ -1,4 +1,4 @@
-import { BarsOutlined, DesktopOutlined, HomeOutlined, MenuUnfoldOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { BarsOutlined, HomeOutlined, MenuUnfoldOutlined, ShoppingCartOutlined, SnippetsOutlined, TeamOutlined, AreaChartOutlined, FileTextOutlined, BarChartOutlined   } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
@@ -36,7 +36,7 @@ function FrameMain() {
                             MainPage 
                         </Link>
                     </Menu.Item>
-                    <Menu.Item key="2" icon={<DesktopOutlined />}>
+                    <Menu.Item key="2" icon={<SnippetsOutlined  />}>
                     <Link to ='/receipt'>
                         Receipt
                     </Link>
@@ -49,13 +49,13 @@ function FrameMain() {
                     
                     </SubMenu>
                     <Menu.Item key="5" icon ={<ShoppingCartOutlined />}><Link to='/sale'>Sale</Link></Menu.Item>
-                    <Menu.Item key="6" icon ={<ShoppingCartOutlined />}><Link to='/bill'>Bill</Link></Menu.Item>
-                    <Menu.Item key="7" icon ={<ShoppingCartOutlined />}><Link to='/customer'>Customer</Link></Menu.Item>
-                    <SubMenu key="sub2" icon={<MenuUnfoldOutlined/>} title="Report">
+                    <Menu.Item key="6" icon ={<FileTextOutlined  />}><Link to='/bill'>Bill</Link></Menu.Item>
+                    <Menu.Item key="7" icon ={<TeamOutlined/>}><Link to='/customer'>Customer</Link></Menu.Item>
+                    <SubMenu key="sub2" icon={<BarChartOutlined  />} title="Report">
                     
-                    <Menu.Item key="8" icon={<BarsOutlined />}><Link to='/report/inventory'>Inventory</Link></Menu.Item>
+                    <Menu.Item key="8" icon={<BarChartOutlined />}><Link to='/report/inventory'>Inventory</Link></Menu.Item>
                   
-                    <Menu.Item key="9"  icon={<BarsOutlined />}><Link to='/report/sales'>Sales</Link></Menu.Item>
+                    <Menu.Item key="9"  icon={<AreaChartOutlined  />}><Link to='/report/sales'>Sales</Link></Menu.Item>
                     
                     </SubMenu>
                 </Menu>
