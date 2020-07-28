@@ -7,6 +7,7 @@ import CustomerTextArea from '../../customerField/customerTextArea';
 import CustomerInput from '../../customerField/customerInput';
 import {addNewReceipt} from './receiptSlide'
 import {useDispatch} from 'react-redux'
+import {countProdAmount} from '../product/productSlide'
 function AddReceipt() {
     const dispatch=useDispatch();
     const randomId=()=>{
@@ -15,7 +16,8 @@ function AddReceipt() {
       const schema = Yup.object().shape({
         source: Yup.string() //name product
           .required('This field is Required'),
-          description: Yup.string() //name product
+          description
+          : Yup.string() //name product
           .required('This field is Required'),
         products: Yup.array().required('Atleast 1 product in cart')
       });
@@ -31,6 +33,11 @@ function AddReceipt() {
             const id=randomId();
             const action= addNewReceipt({...values, id});
             dispatch(action)
+            // increase amount fro each products
+            values.products.forEach(product=>{
+                const action= countProdAmount({id: product.id, amount: product.number})
+                dispatch(action)
+            })
             resetForm({values:''})
             e.preventDefault();
         }}

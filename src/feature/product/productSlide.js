@@ -11,7 +11,7 @@ const product= createSlice(
                 priceImport:"5000",
                 priceExport:"12000",
                 id: 1999,
-                amount: 0,
+                amount: -10,
             },
             {
                 nameProd:"Mì ăn liền Hảo Hảo",
@@ -29,7 +29,16 @@ const product= createSlice(
                 priceImport:"9000",
                 priceExport:"24000",
                 id:3847,
-                amount: 0,
+                amount: 15,
+            },
+            {
+                nameProd:"Bánh Snack khoai tây Lays Vị mực Thái Lan",
+                category:1999,
+                barCode:"202161461",
+                priceImport:"5000",
+                priceExport:"10.500",
+                id:1717,
+                amount:100,
             }
     ],
         reducers:{
@@ -44,6 +53,11 @@ const product= createSlice(
                 if(index>-1)
                 state[index]=action.payload
                 },
+            countProdAmount: (state, action)=>{
+                const index= state.findIndex(product => product.id === action.payload.id)
+                if(index>-1)
+                state[index].amount=state[index].amount + action.payload.amount
+                },
         }
     }
 );
@@ -51,5 +65,6 @@ const {actions, reducer}= product;
 export const {
     addNewProd,
     removeProd, 
-    editProd,}=actions;
+    editProd,
+    countProdAmount}=actions;
 export default reducer;

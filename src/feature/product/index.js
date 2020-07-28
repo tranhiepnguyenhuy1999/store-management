@@ -43,7 +43,7 @@ function Product() {
     const getData=(params)=>{
       let newData=[...product];
       if(params.name!=='')
-          newData=product.filter(product=>product.nameProd.toLowerCase().search(params.name)!==-1)
+          newData=product.filter(product=>product.nameProd.toLowerCase().search(params.name.toLowerCase())!==-1)
       if(params.category)
           newData=newData.filter(product=>product.category===params.category)
       setData(newData)
