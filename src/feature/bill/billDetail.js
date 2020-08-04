@@ -8,6 +8,7 @@ function BillDetail() {
     const bill = useSelector(state => state.bill)
     const data= bill.find(bill=> bill.id=== +idBill)
 
+    const total=data.products.reduce((arr, cur)=> arr + cur.number*cur.priceExport, 0)
     const columns = [
         {
           title: 'Barcode',
@@ -33,7 +34,7 @@ function BillDetail() {
             title: 'Total',
             key: 'total',
             render: (text, record) =>{
-                return (record.priceExport * record.number *2)
+                return (record.priceExport * record.number)
             }
         },
         
@@ -46,12 +47,31 @@ function BillDetail() {
                 Return 
             </Button>
             </Col>
+            <Col style={{margin: `0 0 1em 0`}}>
+                <Col>
+                    Customer: None
+                </Col>
+            </Col>
             <Col span={24}>
                 <Table dataSource={data.products} columns={columns}></Table>
             </Col>
             <Col>
             <Row>
-
+                <Col span ={8} style={{margin: `0 0 1em 0`}}>
+                    Price: {total}
+                </Col>
+                <Col span ={8} style={{margin: `0 0 1em 0`}}>
+                    Sale Off: 0
+                </Col>
+                <Col span ={8} style={{margin: `0 0 1em 0`}}>
+                    Total: {total}
+                </Col>
+                <Col span ={8} style={{margin: `0 0 1em 0`}}>
+                    Input: {data.money}
+                </Col>
+                <Col span ={8} style={{margin: `0 0 1em 0`}}>
+                    Excess Cash: {data.money-total}
+                </Col>
             </Row>
             </Col>
         </Col>

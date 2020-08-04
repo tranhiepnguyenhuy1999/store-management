@@ -10,8 +10,6 @@ function Customer() {
         useEffect(()=>{
             setData(customer)
         },[customer])
-    
-   
     const dispatch=useDispatch();
     const history=useHistory();
     const [data, setData]=useState([])
@@ -32,9 +30,12 @@ function Customer() {
         getData(value)
       }
     }
-
     const getData=(value)=>{
-      const newData=customer.filter(cus=>cus.nameCus.toLowerCase().search(value)!==-1)
+      let newData=[...customer]
+      if(isNaN(value))
+      newData=customer.filter(cus=>cus.nameCus.toLowerCase().search(value.toLowerCase())!==-1)
+      else
+      newData=customer.filter(cus=>cus.phoneNumber.search(value) !==-1)
       setData(newData)
     }
 
@@ -83,7 +84,7 @@ function Customer() {
             <Search
               placeholder="Name Search"
               onSearch={onSearchByName}
-              style={{ width: 200 }}
+              style={{ width: 200, margin:'0 1em 0 0' }}
               allowClear
             />
         </Row>

@@ -1,4 +1,4 @@
-import { BarsOutlined, HomeOutlined, MenuUnfoldOutlined, ShoppingCartOutlined, SnippetsOutlined, TeamOutlined, AreaChartOutlined, FileTextOutlined, BarChartOutlined   } from '@ant-design/icons';
+import { AreaChartOutlined, BarChartOutlined, BarsOutlined, FileTextOutlined, HomeOutlined, MenuUnfoldOutlined, ShoppingCartOutlined, SnippetsOutlined, TeamOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
@@ -10,11 +10,12 @@ import Product from '../../feature/product';
 import AddProduct from '../../feature/product/addProduct/addProduct';
 import Category from '../../feature/product_category';
 import CatAdd from '../../feature/product_category/catAdd';
-import AddReceipt from '../../feature/receipt/addReceipt';
+import Receipt from '../../feature/receipt';
 import Sale from '../../feature/sale';
 import Inventory from '../../report/inventory';
 import MainPage from '../mainPage';
 import './frameMain.scss';
+import AddReceipt from '../../feature/receipt/addReceipt';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 function FrameMain() {
@@ -36,20 +37,21 @@ function FrameMain() {
                             MainPage 
                         </Link>
                     </Menu.Item>
-                    <Menu.Item key="2" icon={<SnippetsOutlined  />}>
-                    <Link to ='/receipt'>
-                        Receipt
-                    </Link>
-                    </Menu.Item>
+                
                     <SubMenu key="sub1" icon={<MenuUnfoldOutlined/>} title="Product">
                     
                     <Menu.Item key="3" icon={<BarsOutlined />}><Link to='/product'>Product</Link></Menu.Item>
-                  
+
                     <Menu.Item key="4"  icon={<BarsOutlined />}><Link to='/product/category'>Category</Link></Menu.Item>
                     
                     </SubMenu>
                     <Menu.Item key="5" icon ={<ShoppingCartOutlined />}><Link to='/sale'>Sale</Link></Menu.Item>
                     <Menu.Item key="6" icon ={<FileTextOutlined  />}><Link to='/bill'>Bill</Link></Menu.Item>
+                    <Menu.Item key="2" icon={<SnippetsOutlined  />}>
+                    <Link to ='/receipt'>
+                        Receipt
+                    </Link>
+                    </Menu.Item>
                     <Menu.Item key="7" icon ={<TeamOutlined/>}><Link to='/customer'>Customer</Link></Menu.Item>
                     <SubMenu key="sub2" icon={<BarChartOutlined  />} title="Report">
                     
@@ -83,7 +85,8 @@ function FrameMain() {
                         <Route exact path='/customer/add' component={AddCustomer}/>
                         <Route exact path='/customer/:idCus' component={AddCustomer}/>
                         <Route exact path='/customer' component={Customer}/>
-                        <Route  exact path='/receipt' component={AddReceipt}></Route>
+                        <Route  exact path='/receipt' component={Receipt}></Route>
+                        <Route  exact path='/receipt/add' component={AddReceipt}></Route>
                         <Route  exact path='/report/inventory' component={Inventory}></Route>
                     </Switch>
 

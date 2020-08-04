@@ -16,9 +16,6 @@ function AddReceipt() {
       const schema = Yup.object().shape({
         source: Yup.string() //name product
           .required('This field is Required'),
-          description
-          : Yup.string() //name product
-          .required('This field is Required'),
         products: Yup.array().required('Atleast 1 product in cart')
       });
     return (

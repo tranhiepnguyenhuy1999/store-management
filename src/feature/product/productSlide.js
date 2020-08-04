@@ -36,7 +36,7 @@ const product= createSlice(
                 category:1999,
                 barCode:"202161461",
                 priceImport:"5000",
-                priceExport:"10.500",
+                priceExport:"10500",
                 id:1717,
                 amount:100,
             }

@@ -3,7 +3,7 @@ import { DeleteOutlined  } from '@ant-design/icons';
 import React from 'react';
 import { useSelector } from 'react-redux';
 const { Option } = Select;
-function CustomerTable({field, form, title, data}) {
+function CustomerTable({field, form, data}) {
     const product=useSelector(state=>state.product)
     const handleChange=(value)=>{   
         if(data.findIndex(item => item.id ===value)===-1)
@@ -51,7 +51,7 @@ function CustomerTable({field, form, title, data}) {
             title: 'Total',
             key: 'total',
             render: (text, record) =>{
-                return (record.priceExport * record.number *2)
+                return (record.priceExport * record.number)
             }
         },
         {
