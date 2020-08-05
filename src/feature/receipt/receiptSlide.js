@@ -14,5 +14,5 @@ const receipt= createSlice(
 const {actions, reducer}= receipt;
 export const {
     addNewReceipt,
- }=actions;
+}=actions;
 export default reducer;

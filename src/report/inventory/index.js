@@ -27,7 +27,7 @@ function Inventory() {
     }
     useEffect(() => {
         getData(search)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [off])
      // Search by name
      const onSearchProductByName=(value)=>{
