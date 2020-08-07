@@ -7,6 +7,7 @@ import CustomerInputNumber from '../../customerField/customerInputNumber';
 import CustomerTable from '../../customerField/customerTable';
 import { addNewBill } from '../bill/billSlide';
 import { descreaseProdAmount } from '../product/productSlide';
+import moment from 'moment'
 function Sale() {
 
     const dispatch= useDispatch();
@@ -39,7 +40,7 @@ function Sale() {
                     alert('Need more money')
                 else{
                 const id=randomId();
-                const action= addNewBill({...values, id});
+                const action= addNewBill({...values, id, date: moment()});
                 dispatch(action)
                 //descrease amount of each product
                 values.products.forEach(product=>{

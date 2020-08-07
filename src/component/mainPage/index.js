@@ -5,13 +5,14 @@ import {useSelector} from 'react-redux'
 function MainPage() {
     const category = useSelector(state => state.category)
     const product = useSelector(state => state.product)
+    const customer = useSelector(state => state.customer)
     return (
         
         <div className="site-card-wrapper">
             <Row gutter={16}>
             <Col span={6}>
-                <Card title="Staff" bordered={false}  style={{cursor: 'pointer'}}>
-                Staff of the store:
+                <Card title="Customer" bordered={false}  style={{cursor: 'pointer'}}>
+                Customer: {customer.length}
                 </Card>
             </Col>
             <Col span={6}>

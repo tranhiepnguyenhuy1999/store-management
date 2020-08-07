@@ -4,12 +4,6 @@ const customer= createSlice(
     {
         name: 'customer',
         initialState: [
-            {
-                nameCus:"Huy",
-                phoneNumber:"0915330370",
-                birth:'12/05/1999',
-                id:4248,
-            }
         ],
         reducers:{
             addNewCus: (state, action)=>{

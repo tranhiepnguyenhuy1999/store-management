@@ -1,10 +1,11 @@
-import { Button, Col, Input, Row, Space, Table } from 'antd';
+import { Button, Col, Input, Row, Space, Table, Breadcrumb, Typography } from 'antd';
 import { DeleteOutlined, EditOutlined  } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { removeCat } from './categorySlide';
 const { Search } = Input;
+const {Title}= Typography
 function Category() {
     const catogory = useSelector(state => state.category);
         useEffect(()=>{
@@ -69,6 +70,10 @@ function Category() {
     return (
         <div>
         <Col style={{marginBottom: '1em'}}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item><Title level={4}>Category</Title></Breadcrumb.Item>
+          </Breadcrumb>
+
         <Row>
             <Link to='/product/category/add' style={{margin:'0 1em 0 0'}}>
                     <Button type='none'>Add new category</Button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Button, Table}  from 'antd';
+import {Col, Button, Space}  from 'antd';
 import {Link} from 'react-router-dom'
 function Receipt() {
     const columns = [
@@ -14,19 +14,6 @@ function Receipt() {
           key: 'nameProd',
         },
         {
-          title: 'Number',
-          dataIndex: 'number',
-          key: 'number',
-          render: (text,record)=>{
-            return <InputNumber min={1} max={100000} value={record.number} onChange={(value)=>onChangeNumber(value, record.id)} />
-          }
-        },
-        {
-            title: 'Price',
-            dataIndex: 'priceExport',
-            key: 'priceExport',
-        },
-        {
             title: 'Total',
             key: 'total',
             render: (text, record) =>{
@@ -38,7 +25,7 @@ function Receipt() {
             key: 'action',
             render: (text, record) => (
               <Space size="middle">
-                <Button icon={<DeleteOutlined/>} onClick={()=>onDeleteProduct(record.id)}></Button>
+                <Button onClick={()=>console.log(record.id)}></Button>
               </Space>
             ),
           },

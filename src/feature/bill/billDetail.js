@@ -49,6 +49,9 @@ function BillDetail() {
             </Col>
             <Col style={{margin: `0 0 1em 0`}}>
                 <Col>
+                    Time: {data.date.format("dddd, MMMM Do YYYY, h:mm:ss a")}
+                </Col>
+                <Col>
                     Customer: None
                 </Col>
             </Col>

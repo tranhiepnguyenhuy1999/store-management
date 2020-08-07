@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Button}  from 'antd'
+import {Col, Button, Breadcrumb, Typography}  from 'antd'
 import {useSelector, useDispatch} from 'react-redux';
 import { FastField, Form, Formik } from 'formik';
 import {useHistory, useParams} from 'react-router-dom'
@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import CustomerSelect from '../../../customerField/customerSelect';
 import CustomInput from '../../../customerField/customerInput';
 import {addNewProd, editProd} from '../productSlide';
+const {Title} =Typography;
 function AddProduct() {
 
     const categoryStore = useSelector(state => state.category);
@@ -51,9 +52,7 @@ function AddProduct() {
         .required('This field is Required'),
     });
     return (
-
-      
-        <div>
+   <div>
           <Formik
           initialValues={initialValues}
           validationSchema={schema}
@@ -76,7 +75,11 @@ function AddProduct() {
           >
             {formikProps =>{
               return<Col span={8}>
-                <Col><Button onClick={()=>{history.push('/product')}}>Return</Button></Col>
+                <Col>
+                <Breadcrumb style={{ margin: '16px 0' }}>
+                    <Breadcrumb.Item><Title level={4}>Product/ {idProd?`#${idProd}`:'Add'}</Title></Breadcrumb.Item>
+                </Breadcrumb>
+                <Button onClick={()=>{history.push('/product')}}>Return</Button></Col>
                 <Form>
                   <FastField
                     name='barCode'

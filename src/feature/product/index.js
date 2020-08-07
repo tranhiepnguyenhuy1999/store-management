@@ -1,4 +1,4 @@
-import { Button, Col, Row, Space, Table, Input, Select, Tag } from 'antd';
+import { Button, Col, Row, Space, Table, Input, Select, Tag, Breadcrumb, Typography} from 'antd';
 import { DeleteOutlined, EditOutlined  } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { removeProd } from './productSlide';
 const {Search} = Input;
 const {Option} =Select;
+const { Title } = Typography;
 function Product() {
     const product = useSelector(state => state.product);
     useEffect(()=>{
@@ -101,6 +102,9 @@ function Product() {
       ];    
     return (
         <Col span={24}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item><Title level={4}>Product</Title></Breadcrumb.Item>
+          </Breadcrumb>
         <Col style={{marginBottom: '1em'}}>
         <Row>
             <Link to='/product/add' style={{margin: '0 1em 0 0'}}>

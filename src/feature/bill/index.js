@@ -30,6 +30,14 @@ function Bill() {
           key: 'money',
         },
         {
+          title: 'Date',
+          dataIndex: 'date',
+          key: 'date',
+          render: (text, record) =>{
+            return record.date.format('DD/MM/YYYY')
+          }
+        },
+        {
             title: 'Action',
             key: 'action',
             render: (text, record) => (

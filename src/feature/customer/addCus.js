@@ -6,7 +6,6 @@ import * as Yup from 'yup';
 import CustomInput from '../../customerField/customerInput';
 import { useHistory, useParams } from "react-router-dom";
 import CustomerDatePicker from '../../customerField/customerDatePicker';
-import moment from 'moment';
 import {addNewCus, editCus} from './customerSlide'
 function AddCustomer() { 
     const dispatch=useDispatch();
@@ -19,7 +18,7 @@ function AddCustomer() {
     idCus?{
         nameCus: eCus.nameCus,
         phoneNumber: eCus.phoneNumber,
-        birth: moment(eCus.birth, 'DD/MM/YYYY'),
+        birth: eCus.birth,
     }:{
         nameCus : '',
         phoneNumber: '',
@@ -48,22 +47,22 @@ function AddCustomer() {
             const phoneCheck_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
             if(idCus)
             {   
-                // eđit category
+                // edit customer
                 if(phoneCheck_regex.test(values.phoneNumber)){
-                const cusU= {...values, id:+idCus, birth: values.birth.dateString}
+                const cusU= {...values, id:+idCus}
                 const action=editCus(cusU)
                 dispatch(action)
                 resetForm({values:''});}
                 else{
-                    alert('The phone is not real') 
+                    alert('The phone is not real')
                 }          
             }
             else{
-                //add new category
+                //add new customer
                 if(phoneCheck_regex.test(values.phoneNumber))
                 {
                 const newId=ramdomId();
-                const action= addNewCus({...values, id: newId, birth: values.birth.dateString});
+                const action= addNewCus({...values, id: newId});
                 dispatch(action);
                 resetForm({values:''});
                 }

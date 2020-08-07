@@ -13,7 +13,7 @@ const category= createSlice(
             id:10, nameCat: 'Hoa', idCat:'1205VVH'
         },
         {
-            id:1999, nameCat: 'Bánh Snack', idCat:'987445A30'   a
+            id:1999, nameCat: 'Bánh Snack', idCat:'987445A30' 
         }
     ],
         reducers:{

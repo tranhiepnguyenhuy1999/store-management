@@ -70,8 +70,10 @@ function Customer() {
           {
             title: 'Birthday',
             dataIndex: 'birth',
-            key: 'birthday',
-            
+            key: 'birth',
+            render: (text, record)=>{
+                return record.birth.format('DD/MM/YYYY')
+            }
           },
       ];    
     return (

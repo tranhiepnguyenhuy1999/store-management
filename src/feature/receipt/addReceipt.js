@@ -16,7 +16,6 @@ function AddReceipt() {
       const schema = Yup.object().shape({
         source: Yup.string() //name product
           .required('This field is Required'),
-        products: Yup.array().required('Atleast 1 product in cart')
       });
     return (
         <Formik
@@ -27,6 +26,12 @@ function AddReceipt() {
         }    }
         validationSchema={schema}
         onSubmit={(values,{resetForm}, e)=>{
+            if(values.products.length===0)
+            {
+                alert('Need add atleast one product')
+                return;    
+            }
+                
             const id=randomId();
             const action= addNewReceipt({...values, id});
             dispatch(action)
