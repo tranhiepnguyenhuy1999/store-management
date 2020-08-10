@@ -48,8 +48,8 @@ function Category() {
         },
         {
           title: 'Name',
-          dataIndex: 'nameCat',
-          key: 'nameCat',
+          dataIndex: 'name',
+          key: 'name',
         },
         {
           title: 'CatID',

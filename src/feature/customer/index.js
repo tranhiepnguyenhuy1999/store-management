@@ -33,7 +33,7 @@ function Customer() {
     const getData=(value)=>{
       let newData=[...customer]
       if(isNaN(value))
-      newData=customer.filter(cus=>cus.nameCus.toLowerCase().search(value.toLowerCase())!==-1)
+      newData=customer.filter(cus=>cus.name.toLowerCase().search(value.toLowerCase())!==-1)
       else
       newData=customer.filter(cus=>cus.phoneNumber.search(value) !==-1)
       setData(newData)
@@ -48,8 +48,8 @@ function Customer() {
         },
         {
           title: 'Name',
-          dataIndex: 'nameCus',
-          key: 'nameCus',
+          dataIndex: 'name',
+          key: 'name',
         },
         {
           title: 'Phone',

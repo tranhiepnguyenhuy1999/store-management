@@ -1,15 +1,17 @@
 import { Button, Col, Row } from 'antd';
 import { FastField, Form, Formik } from 'formik';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import CustomerInputNumber from '../../customerField/customerInputNumber';
 import CustomerTable from '../../customerField/customerTable';
 import { addNewBill } from '../bill/billSlide';
 import { descreaseProdAmount } from '../product/productSlide';
 import moment from 'moment'
+import CustomerSelect from '../../customerField/customerSelect';
 function Sale() {
 
+    const cus = useSelector(state => state.customer) // Customer from redux
     const dispatch= useDispatch();
 
     // Create fake ID
@@ -31,6 +33,7 @@ function Sale() {
                 {
                     products: [],
                     money: 0,
+                    customer: null,
                 }
             }
             validationSchema={schema}
@@ -81,6 +84,15 @@ function Sale() {
                                         title='Input money'
                                         min={0}
                                         maxx={10000000}
+                                    >
+                                    </FastField>
+
+                                    <FastField
+                                        name='customer'
+                                        component={CustomerSelect}
+
+                                        title='Customer Name'
+                                        option={cus}
                                     >
                                     </FastField> 
                                     </Col>

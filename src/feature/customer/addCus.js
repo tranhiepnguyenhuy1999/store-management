@@ -16,11 +16,11 @@ function AddCustomer() {
     const eCus= customer.find(cus=>cus.id===+idCus)
     const initialValues=
     idCus?{
-        nameCus: eCus.nameCus,
+        name: eCus.name,
         phoneNumber: eCus.phoneNumber,
         birth: eCus.birth,
     }:{
-        nameCus : '',
+        name : '',
         phoneNumber: '',
         birth:null,
     };
@@ -30,7 +30,7 @@ function AddCustomer() {
  
     // Validation the values 
     const schema = Yup.object().shape({
-        nameCus: Yup.string()
+        name: Yup.string()
           .min(2, 'Too Short!')
           .max(50, 'Too Long!')
           .required('This field is Required'),
@@ -83,7 +83,7 @@ function AddCustomer() {
                      <Form>
                         {/* Input name customer */}
                             <FastField
-                            name='nameCus'
+                            name='name'
                             component={CustomInput}
                             
                             type='text'

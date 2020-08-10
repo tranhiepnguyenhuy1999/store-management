@@ -1,8 +1,8 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
+import { EyeOutlined } from '@ant-design/icons';
 import { Button, Col, Space, Table } from 'antd';
-import { EyeOutlined,  } from '@ant-design/icons';
-import {useHistory} from 'react-router-dom'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 function Bill() {
 
     const bill= useSelector(state=> state.bill)
@@ -15,6 +15,17 @@ function Bill() {
           title: 'ID',
           dataIndex: 'id',
           key: 'id',
+        },
+        {
+          title: 'Customer',
+          dataIndex: 'customer',
+          key: 'customer',
+          render: (text, record)=>{
+            if(record.customer){
+              return record.customer
+            }
+            return 'Stranger'
+          }
         },
         {
           title: 'Total',

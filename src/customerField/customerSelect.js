@@ -3,9 +3,10 @@ import { Select } from 'antd';
 const { Option } = Select;
 function CustomerSelect({option, field, form, placeholder, title}) {
     const onChange=(value, props)=>{
+        console.log(props.id)
     form.setFieldValue(field.name, props.id);
     }
-    const valueSelected=option.find( item=> item.id===field.value)?option.find( item=> item.id===field.value):{nameCat:''};
+    const valueSelected=option.find( item=> item.id===field.value)?option.find( item=> item.id===field.value):{name:''};
     return (
         <div>
             {title&&<label for={field.name}>{title}</label>}
@@ -15,13 +16,13 @@ function CustomerSelect({option, field, form, placeholder, title}) {
                 placeholder={placeholder}
                 optionFilterProp="children"
                 {...field}
-                value={valueSelected.nameCat}
+                value={valueSelected.name}
                 onChange={onChange}
                 filterOption={(input, option) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                 }
             >
-                {option.map(cat=><Option value={cat.nameCat} id={cat.id}>{cat.nameCat}</Option>)}
+                {option.map(item=><Option value={item.name} id={item.id}>{item.name}</Option>)}
             </Select>
         </div>
     )

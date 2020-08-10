@@ -52,7 +52,7 @@ function BillDetail() {
                     Time: {data.date.format("dddd, MMMM Do YYYY, h:mm:ss a")}
                 </Col>
                 <Col>
-                    Customer: None
+                    Customer: {data.customer?data.customer:'Stranger'}
                 </Col>
             </Col>
             <Col span={24}>

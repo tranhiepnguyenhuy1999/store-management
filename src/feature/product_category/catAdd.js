@@ -14,10 +14,10 @@ function CatAdd() {
     const eCat= category.find(cat=>cat.id===+idCat)
     const initialValues=
     idCat?{
-        nameCat: eCat.nameCat,
+        name: eCat.name,
         idCat: eCat.idCat,
     }:{
-        nameCat : '',
+        name: '',
         idCat: '',
     };
     const ramdomId=()=>{
@@ -26,7 +26,7 @@ function CatAdd() {
  
     // Validation the values 
     const schema = Yup.object().shape({
-        nameCat: Yup.string()
+        name: Yup.string()
           .min(2, 'Too Short!')
           .max(50, 'Too Long!')
           .required('This field is Required'),
@@ -68,7 +68,7 @@ function CatAdd() {
                      <Form>
                         {/* Input Category */}
                             <FastField
-                            name='nameCat'
+                            name='name'
                             component={CustomInput}
                             
                             type='text'

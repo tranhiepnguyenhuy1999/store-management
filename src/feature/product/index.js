@@ -129,7 +129,7 @@ function Product() {
                   }
                   allowClear
                 >
-                  {category.map(cat=><Option value={cat.id}>{cat.nameCat}</Option>)}
+                  {category.map(cat=><Option value={cat.id}>{cat.name}</Option>)}
                 </Select>
         </Row>
         </Col>
