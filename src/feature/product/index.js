@@ -73,7 +73,7 @@ function Product() {
         key: 'category',
         render: (text, record)=>{
             const item= category.find(cat=>cat.id===record.category)
-            return<div>{item.nameCat}</div>
+            return<div>{item.name}</div>
         }
       },
       {

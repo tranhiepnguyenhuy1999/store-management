@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 function Bill() {
 
     const bill= useSelector(state=> state.bill)
+    const cus= useSelector(state=> state.customer)
     const history=useHistory();
     const onDetial=(id)=>{
         history.push(`bill/${id}`)
@@ -22,7 +23,7 @@ function Bill() {
           key: 'customer',
           render: (text, record)=>{
             if(record.customer){
-              return record.customer
+              return cus.find(item=> item.id===record.customer).name
             }
             return 'Stranger'
           }

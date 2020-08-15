@@ -27,7 +27,7 @@ function Customer() {
       if(value==='')
       setData(customer)
       else{
-        getData(value)
+      getData(value)
       }
     }
     const getData=(value)=>{

@@ -1,7 +1,9 @@
 import React from 'react';
 import {Col, Button, Space}  from 'antd';
 import {Link} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 function Receipt() {
+  const receipt = useSelector(state => state.receipt)
     const columns = [
         {
           title: 'Barcode',
