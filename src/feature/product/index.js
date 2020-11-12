@@ -129,11 +129,11 @@ function Product() {
                   }
                   allowClear
                 >
-                  {category.map(cat=><Option value={cat.id}>{cat.name}</Option>)}
+                  {category.map(cat=><Option value={cat.id} key={cat.id}>{cat.name}</Option>)}
                 </Select>
         </Row>
         </Col>
-         <Table dataSource={data} columns={columns}></Table>
+         <Table dataSource={data} columns={columns} rowKey='id'></Table>
         </Col>
     )
 }

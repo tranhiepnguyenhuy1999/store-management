@@ -95,12 +95,12 @@ function Inventory() {
                     
                     allowClear
                     >
-                    {category.map(cat=><Option value={cat.id}>{cat.nameCat}</Option>)}
+                    {category.map(cat=><Option value={cat.id} key={cat.id}>{cat.nameCat}</Option>)}
                     </Select>
                     <Checkbox onChange={onChangeOff}>Sold out</Checkbox>
                 </Row>
             </Col>
-            <Table dataSource={data} columns={columns}></Table>
+            <Table dataSource={data} columns={columns} rowKey='id'></Table>
         </Col>
     )
 }

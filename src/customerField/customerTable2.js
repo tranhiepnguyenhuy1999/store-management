@@ -86,10 +86,10 @@ function CustomerTable2({field, form, data}) {
                 }
         
             >
-                {product.map(product=><Option value={product.id} nameProd={product.nameProd}>{product.barCode} - {product.nameProd}</Option>)}
+                {product.map(product=><Option value={product.id} nameprod={product.nameProd} key={product.id}>{product.barCode} - {product.nameProd}</Option>)}
                 {/* value of Option is the value that you want get in onChange select */}
             </Select>
-            <Table dataSource={data} columns={columns} />
+            <Table dataSource={data} columns={columns} rowKey='id'/>
         </Col>        
     )
 }

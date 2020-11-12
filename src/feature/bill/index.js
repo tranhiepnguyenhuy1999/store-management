@@ -63,7 +63,7 @@ function Bill() {
         <div>
         <Col style={{marginBottom: '1em'}}>
         </Col>
-         <Table dataSource={bill} columns={columns}></Table>
+         <Table dataSource={bill} columns={columns} rowKey='id'></Table>
         </div>
     )
 }

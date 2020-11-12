@@ -56,7 +56,7 @@ function BillDetail() {
                 </Col>
             </Col>
             <Col span={24}>
-                <Table dataSource={data.products} columns={columns}></Table>
+                <Table dataSource={data.products} columns={columns} rowKey='id'></Table>
             </Col>
             <Col>
             <Row>

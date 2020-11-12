@@ -11,7 +11,7 @@ function CustomerInputNumber({field, form, title, min, max}) {
     }
     return (
         <Col style={{margin: '1em 0'}}>
-            <label for={field.name}>{title}</label>
+            <label htmlFor={field.name}>{title}</label>
             <InputNumber min={min} max={max} {...field}
             onChange={onChange}
             style={{width:'100%'}}

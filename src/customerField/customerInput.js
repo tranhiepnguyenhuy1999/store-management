@@ -7,7 +7,7 @@ function CustomerInput({field, form, type, placeholder, title, disabled}) {
     const {name}= field;
     return (
         <Col style={{margin: '1em 0'}}>
-            <label for={field.name}>{title}</label>
+            <label htmlFor={field.name}>{title}</label>
             <Input
             {...field}
             type={type}

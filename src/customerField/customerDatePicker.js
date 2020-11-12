@@ -10,7 +10,7 @@ function CustomerDatePicker({field, form, placeholder, title}) {
     const initialValue=value?value:moment()
     return (
         <Col style={{margin: '1em 0'}}>
-            <label for={field.name}>{title}</label>
+            <label htmlFor={field.name}>{title}</label>
             <DatePicker {...field} value={initialValue} onChange={onChange} placeholder={placeholder} allowClear={false} format='DD/MM/YYYY'/>
         </Col>
     )

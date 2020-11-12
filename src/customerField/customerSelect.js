@@ -9,7 +9,7 @@ function CustomerSelect({option, field, form, placeholder, title}) {
     const valueSelected=option.find( item=> item.id===field.value)?option.find( item=> item.id===field.value):{name:''};
     return (
         <div>
-            {title&&<label for={field.name}>{title}</label>}
+            {title&&<label htmlFor={field.name}>{title}</label>}
             <Select
                 showSearch
                 style={{ width: `100%` }}
@@ -22,7 +22,7 @@ function CustomerSelect({option, field, form, placeholder, title}) {
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                 }
             >
-                {option.map(item=><Option value={item.name} id={item.id}>{item.name}</Option>)}
+                {option.map(item=><Option value={item.name} id={item.id} key={item.id}>{item.name}</Option>)}
             </Select>
         </div>
     )

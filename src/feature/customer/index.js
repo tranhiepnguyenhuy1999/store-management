@@ -91,7 +91,7 @@ function Customer() {
             />
         </Row>
         </Col>
-         <Table dataSource={data} columns={columns}></Table>
+         <Table dataSource={data} columns={columns} rowKey='id'></Table>
         </div>
     )
 }
